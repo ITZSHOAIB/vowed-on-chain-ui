@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Wallet } from "lucide-react";
+import ConnectWallet from "./connect-wallet";
 
 export function Navbar() {
   return (
@@ -15,10 +16,7 @@ export function Navbar() {
             </span>
           </a>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <Button>
-              <span className="hidden md:inline-block">Connect Wallet</span>
-              <Wallet className="md:ml-2 h-4 w-4" />
-            </Button>
+            <ConnectWallet />
           </div>
         </div>
       </nav>

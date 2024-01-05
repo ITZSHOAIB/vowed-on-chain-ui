@@ -1,10 +1,10 @@
 import "@/app/ui/globals.css";
 import { inter } from "@/app/ui/fonts";
-import { Navbar } from "@/components/ui/navbar";
-import { SubNavbar } from "@/components/ui/sub-navbar";
+import { Navbar } from "@/app/ui/navbar";
+import { SubNavbar } from "@/app/ui/sub-navbar";
 import { headers } from "next/headers";
 import { State, cookieToInitialState } from "wagmi";
-import { wagmiConfig } from "./wagmi.config";
+import { wagmiConfig } from "../wagmi.config";
 import { Providers } from "./providers";
 
 export default function RootLayout({
