@@ -18,9 +18,7 @@ import {
 import WalletOption from "./wallet-option";
 import { Separator } from "@/components/ui/separator";
 import { usePathname, useRouter } from "next/navigation";
-
-const truncateAddress = (address: string) =>
-  `${address.slice(0, 6)}...${address.slice(-6)}`;
+import { truncateAddress } from "@/lib/utils";
 
 export default function ConnectWallet() {
   const { connectors, connect } = useConnect();
