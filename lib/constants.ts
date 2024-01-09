@@ -4,3 +4,7 @@ export enum MarriageStatus {
   Married,
   Divorced,
 }
+
+export const BLOCKCHAIN_CONSTANTS = {
+  ZERO_ADDRESS: "0x0000000000000000000000000000000000000000",
+};

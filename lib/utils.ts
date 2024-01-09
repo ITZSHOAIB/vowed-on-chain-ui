@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function truncateAddress(address: string) {
-  return `${address.slice(0, 6)}...${address.slice(-6)}`;
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
 }
