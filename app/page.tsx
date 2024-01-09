@@ -18,7 +18,7 @@ export default function Home() {
               transparent way to vow your commitment.
             </p>
             <Button variant="outline" className="mb-8" asChild>
-              <Link href="https://github.com/ITZSHOAIB/vowed-on-chain/blob/master/contracts/VowedOnChain.sol">
+              <Link href="https://github.com/ITZSHOAIB/vowed-on-chain/blob/master/hardhat/contracts/VowedOnChain.sol">
                 <Github className="mr-2 h-4 w-4" /> Read the Contract
               </Link>
             </Button>

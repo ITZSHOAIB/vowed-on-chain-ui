@@ -8,9 +8,9 @@ export default function Dashboard() {
   return (
     <section className="mx-auto max-w-screen-xl p-3 flex flex-col gap-4">
       <div className="flex flex-col md:flex-row gap-4">
-        <MartialStatus />
+        {/* <MartialStatus />
         <GiftBalance />
-        <SpouseAddress />
+        <SpouseAddress /> */}
       </div>
       <Engagement />
     </section>

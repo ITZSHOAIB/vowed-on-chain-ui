@@ -1,29 +1,21 @@
 import "@/app/ui/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
 import { inter } from "@/app/ui/fonts";
 import { Navbar } from "@/components/ui/navbar";
-import { SubNavbar } from "@/components/ui/sub-navbar";
-import { headers } from "next/headers";
-import { State, cookieToInitialState } from "wagmi";
-import { wagmiConfig } from "../wagmi.config";
-import { Providers } from "./providers";
+import { Web3Providers } from "./providers/web3-providers";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const initialState = cookieToInitialState(
-    wagmiConfig,
-    headers().get("cookie")
-  ) as State;
-
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <Providers initialState={initialState}>
+        <Web3Providers>
           <Navbar />
           {children}
-        </Providers>
+        </Web3Providers>
       </body>
     </html>
   );
