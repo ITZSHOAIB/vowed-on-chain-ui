@@ -9,8 +9,11 @@ export function Navbar() {
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white hidden md:block">
               VowedOnChain
+            </span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white block md:hidden">
+              VOC
             </span>
           </a>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">

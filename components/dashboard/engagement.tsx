@@ -1,13 +1,4 @@
-import { Gem } from "lucide-react";
-import { Button } from "../ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { Input } from "../ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import EngagementForm from "./engagement-form";
 
 export default function Engagement() {

@@ -1,9 +1,20 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Gift } from "lucide-react";
-import { readContractMethod } from "@/lib/data";
+import artifact from "@/artifacts/VowedOnChain.json";
+import contractAddress from "@/artifacts/contract-address.json";
+import { useContractRead } from "wagmi";
+import { BLOCKCHAIN_CONSTANTS } from "@/lib/constants";
+const { abi } = artifact;
+const { VowedOnChainAddress } = contractAddress;
 
-export default async function GiftBalance() {
-  const balance = await readContractMethod("getGiftBalance");
+export default function GiftBalance() {
+  // const balance = await readContractMethod("getGiftBalance");
+  const { data, status } = useContractRead({
+    abi: abi,
+    address: VowedOnChainAddress as `0x${string}`,
+    functionName: "getGiftBalance",
+  });
 
   return (
     <>
@@ -15,7 +26,13 @@ export default async function GiftBalance() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <span>{balance.toString() / 10 ** 18}</span>
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.LOADING && (
+            <span>Loading...</span>
+          )}
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && <span>Error</span>}
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
+            <span>{data.toString() / 10 ** 18}</span>
+          )}
         </CardContent>
       </Card>
     </>

@@ -8,8 +8,7 @@ import {
 } from "@rainbow-me/rainbowkit-siwe-next-auth";
 import { WagmiConfig } from "wagmi";
 import { chains, wagmiConfig } from "@/wagmi.config";
-import { SessionProvider, useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 
 const appInfo = {
   appName: "VowedOnChain",
@@ -25,7 +24,7 @@ export function Web3Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <WagmiConfig config={wagmiConfig}>
-      <SessionProvider>
+      <SessionProvider refetchInterval={0}>
         <RainbowKitSiweNextAuthProvider
           getSiweMessageOptions={getSiweMessageOptions}
         >

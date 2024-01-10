@@ -20,8 +20,8 @@ const localhost: Chain = {
   network: "localhost",
   nativeCurrency: {
     decimals: 18,
-    name: "VOC",
-    symbol: "VOC",
+    name: "Ether",
+    symbol: "ETH",
   },
   rpcUrls: {
     public: { http: ["http://localhost:8545"] },

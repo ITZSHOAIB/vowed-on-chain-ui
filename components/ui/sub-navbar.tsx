@@ -1,15 +1,29 @@
 "use client";
 import clsx from "clsx";
 import { HomeIcon, LayoutDashboard } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAccount } from "wagmi";
 
 const links = [
+  { name: "Home", href: "/", icon: HomeIcon },
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
 ];
 
 export function SubNavbar() {
   const pathname = usePathname();
+  const { status } = useSession();
+  const router = useRouter();
+
+  useAccount({
+    onConnect(data) {},
+    onDisconnect() {
+      if (pathname.startsWith("/dashboard")) {
+        router.replace("/");
+      }
+    },
+  });
 
   return (
     <nav className="bg-gray-50 dark:bg-gray-700">

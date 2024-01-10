@@ -1,10 +1,23 @@
-import { MarriageStatus } from "@/lib/constants";
+"use client";
+import { BLOCKCHAIN_CONSTANTS, MarriageStatus } from "@/lib/constants";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Heart } from "lucide-react";
-import { readContractMethod } from "@/lib/data";
+import artifact from "@/artifacts/VowedOnChain.json";
+import contractAddress from "@/artifacts/contract-address.json";
+import { useContractRead } from "wagmi";
+const { abi } = artifact;
+const { VowedOnChainAddress } = contractAddress;
 
-export default async function MartialStatus() {
-  const status = await readContractMethod("getMaritalStatus");
+export default function MartialStatus() {
+  // const status = await readContractMethod("getMaritalStatus");
+  const { data, status } = useContractRead({
+    abi: abi,
+    address: VowedOnChainAddress as `0x${string}`,
+    functionName: "getMaritalStatus",
+  });
+
+  console.log(data);
+
   return (
     <>
       <Card className="w-full">
@@ -15,10 +28,18 @@ export default async function MartialStatus() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {status === MarriageStatus.Single && <span>Single</span>}
-          {status === MarriageStatus.Engaged && <span>Engaged</span>}
-          {status === MarriageStatus.Married && <span>Married</span>}
-          {status === MarriageStatus.Divorced && <span>Divorced</span>}
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.LOADING && (
+            <span>Loading...</span>
+          )}
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && <span>Error</span>}
+          {status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
+            <>
+              {data === MarriageStatus.Single && <span>Single</span>}
+              {data === MarriageStatus.Engaged && <span>Engaged</span>}
+              {data === MarriageStatus.Married && <span>Married</span>}
+              {data === MarriageStatus.Divorced && <span>Divorced</span>}
+            </>
+          )}
         </CardContent>
       </Card>
     </>

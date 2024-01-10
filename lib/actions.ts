@@ -1,5 +1,5 @@
 "use server";
-
+// Will be used when Rainbowkit v2 available with Wagmi v2
 import { wagmiConfig } from "@/wagmi.config";
 import { prepareWriteContract, writeContract } from "@wagmi/core";
 import artifact from "@/artifacts/VowedOnChain.json";
