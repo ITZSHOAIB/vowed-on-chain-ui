@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Gem } from "lucide-react";
+import { Gem, LinkIcon } from "lucide-react";
 import { isAddress } from "viem";
 import { useContractWrite } from "wagmi";
 import artifact from "@/artifacts/VowedOnChain.json";
@@ -62,9 +62,14 @@ export default function EngagedForm() {
         </Button>
       </div>
       {isSuccess && (
-        <div className="text-sm text-gray-600 italic">
+        <div className="text-sm text-green-700 italic">
           Congratulations! You are now engaged!
-          <div>Transaction Hash: {data?.hash}</div>
+          <div className="flex  items-center gap-1 bg-secondary p-2 mt-2 text-primary rounded-md overflow-auto">
+            <LinkIcon size={14} />
+            <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`}>
+              Check on Polygon Scan
+            </a>
+          </div>
         </div>
       )}
       <div className="text-sm text-destructive italic">

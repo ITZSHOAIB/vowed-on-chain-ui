@@ -64,8 +64,8 @@ export default function ConnectWallet() {
                       <div
                         style={{
                           background: chain.iconBackground,
-                          width: 16,
-                          height: 16,
+                          width: 20,
+                          height: 20,
                           borderRadius: 999,
                           overflow: "hidden",
                           marginRight: 4,
@@ -75,7 +75,7 @@ export default function ConnectWallet() {
                           <img
                             alt={chain.name ?? "Chain icon"}
                             src={chain.iconUrl}
-                            style={{ width: 16, height: 16 }}
+                            style={{ width: 20, height: 20 }}
                           />
                         )}
                       </div>
