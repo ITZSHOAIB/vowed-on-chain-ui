@@ -1,14 +1,15 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import EngagementForm from "./engagement-form";
+import EngagedForm from "./engaged-form";
 
-export default function Engagement() {
+export default function Engaged() {
   return (
     <Card>
       <CardHeader>
         <CardTitle>Get Engaged</CardTitle>
       </CardHeader>
       <CardContent>
-        <EngagementForm />
+        <EngagedForm />
       </CardContent>
     </Card>
   );

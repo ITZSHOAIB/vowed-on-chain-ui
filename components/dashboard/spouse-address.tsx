@@ -7,19 +7,19 @@ import { Button } from "../ui/button";
 import { BLOCKCHAIN_CONSTANTS } from "@/lib/constants";
 import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
-import { useContractRead } from "wagmi";
+import { useContractRead, useWalletClient } from "wagmi";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 
 export default function SpouseAddress() {
   // const spouseAddress = await readContractMethod("getSpouseAddress");
+  const { data: walletClient } = useWalletClient();
   const { data, status } = useContractRead({
     abi: abi,
     address: VowedOnChainAddress as `0x${string}`,
     functionName: "getSpouseAddress",
+    account: walletClient?.account,
   });
-
-  console.log(data);
 
   return (
     <>

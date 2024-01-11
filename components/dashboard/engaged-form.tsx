@@ -12,7 +12,7 @@ const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 import { useDebounce } from "use-debounce";
 
-export default function EngagementForm() {
+export default function EngagedForm() {
   const [formError, setFormError] = useState("");
   const [spouseAddress, setSpouseAddress] = useState("");
   const [debouncedSpouseAddress] = useDebounce(spouseAddress, 500);
