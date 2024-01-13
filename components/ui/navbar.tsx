@@ -3,7 +3,7 @@ import ConnectWallet from "./connect-wallet";
 export function Navbar() {
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="border-gray-200">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
           <a
             href="#"

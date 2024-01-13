@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
+import { ThemeToggler } from "./theme-toggler";
 
 const links = [
   { name: "Home", href: "/", icon: HomeIcon },
@@ -26,9 +27,9 @@ export function SubNavbar() {
   });
 
   return (
-    <nav className="bg-gray-50 dark:bg-gray-700">
+    <nav className="bg-secondary">
       <div className="max-w-screen-xl px-4 py-3 mx-auto">
-        <div className="flex items-center">
+        <div className="flex items-center justify-between">
           <div className="flex flex-row font-medium mt-0 space-x-2 rtl:space-x-reverse text-sm">
             {links.map((link) => {
               const LinkIcon = link.icon;
@@ -37,9 +38,9 @@ export function SubNavbar() {
                   key={link.name}
                   href={link.href}
                   className={clsx(
-                    "flex text-muted-foreground grow items-center justify-center gap-1 bg-gray-50 p-2 hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                    "flex   grow items-center justify-center gap-1 rounded-md py-2 px-3 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
                     {
-                      "bg-sky-100": pathname === link.href,
+                      "bg-background": pathname === link.href,
                     }
                   )}
                 >
@@ -49,6 +50,7 @@ export function SubNavbar() {
               );
             })}
           </div>
+          <ThemeToggler />
         </div>
       </div>
     </nav>

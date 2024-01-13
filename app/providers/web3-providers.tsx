@@ -1,7 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import {
+  RainbowKitProvider,
+  darkTheme,
+  lightTheme,
+} from "@rainbow-me/rainbowkit";
 import {
   GetSiweMessageOptions,
   RainbowKitSiweNextAuthProvider,
@@ -9,6 +13,7 @@ import {
 import { WagmiConfig } from "wagmi";
 import { chains, wagmiConfig } from "@/wagmi.config";
 import { SessionProvider } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 const appInfo = {
   appName: "VowedOnChain",
@@ -17,6 +22,8 @@ const appInfo = {
 export function Web3Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
+
+  const { theme } = useTheme();
 
   const getSiweMessageOptions: GetSiweMessageOptions = () => ({
     statement: "Sign in to The VowedOnChain App",
@@ -28,7 +35,11 @@ export function Web3Providers({ children }: { children: React.ReactNode }) {
         <RainbowKitSiweNextAuthProvider
           getSiweMessageOptions={getSiweMessageOptions}
         >
-          <RainbowKitProvider chains={chains} appInfo={appInfo}>
+          <RainbowKitProvider
+            chains={chains}
+            appInfo={appInfo}
+            theme={theme === "dark" ? darkTheme() : lightTheme()}
+          >
             {mounted && children}
           </RainbowKitProvider>
         </RainbowKitSiweNextAuthProvider>
