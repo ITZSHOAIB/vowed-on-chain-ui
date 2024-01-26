@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { Gem, LinkIcon } from "lucide-react";
 import { isAddress } from "viem";
 import { useContractWrite, useWaitForTransaction } from "wagmi";
@@ -11,7 +11,7 @@ import { useState } from "react";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 import { useDebounce } from "use-debounce";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { useRouter } from "next/navigation";
 
 export default function EngagedForm() {
@@ -47,7 +47,7 @@ export default function EngagedForm() {
   };
 
   return (
-    <Card>
+    <Card className="bg-gradient-to-r from-pink-500 to-purple-500 text-white">
       <CardHeader>
         <CardTitle>Get Engaged</CardTitle>
       </CardHeader>
@@ -56,6 +56,7 @@ export default function EngagedForm() {
           <div className="flex w-full max-w-xl items-start gap-4 flex-col md:flex-row md:items-center">
             <Input
               type="text"
+              className="bg-white text-black"
               placeholder="Spouse's wallet address"
               onChange={(e) => {
                 setSpouseAddress(e.target.value.trim());
@@ -66,8 +67,9 @@ export default function EngagedForm() {
             <Button
               disabled={!write || !!formError || isLoading}
               onClick={handleSubmit}
+              className="bg-white text-black hover:bg-gray-200"
             >
-              Let's Engaged{" "}
+              Let's Engaged
               {isLoading ? (
                 <Gem className="ml-2 h-4 w-4 animate-spin" />
               ) : (
@@ -76,9 +78,9 @@ export default function EngagedForm() {
             </Button>
           </div>
           {isSuccess && (
-            <div className="text-sm text-green-700 italic">
+            <div className="text-sm text-green-300 italic">
               Congratulations! You are now engaged!
-              <div className="flex  items-center gap-1 bg-secondary p-2 mt-2 text-primary rounded-md overflow-auto">
+              <div className="flex items-center gap-1 bg-black bg-opacity-10 p-2 mt-2 text-white hover:text-gray-200 rounded-md overflow-auto">
                 <LinkIcon size={14} />
                 <a href={`https://mumbai.polygonscan.com/tx/${data?.hash}`}>
                   Check on Polygon Scan
@@ -86,7 +88,7 @@ export default function EngagedForm() {
               </div>
             </div>
           )}
-          <div className="text-sm text-destructive italic">
+          <div className="text-sm italic">
             {isError && `Blockchain Transaction Error!`}
             {formError}
           </div>

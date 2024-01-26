@@ -1,11 +1,11 @@
 "use client";
 import { BLOCKCHAIN_CONSTANTS, MarriageStatus } from "@/lib/constants";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Heart } from "lucide-react";
 import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
 import { useContractRead, useWalletClient } from "wagmi";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../../ui/skeleton";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 

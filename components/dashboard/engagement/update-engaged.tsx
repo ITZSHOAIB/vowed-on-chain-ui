@@ -1,8 +1,14 @@
 "use client";
 import { LinkIcon, PenLine } from "lucide-react";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card";
+import { Input } from "../../ui/input";
 import { useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useContractWrite, useWaitForTransaction } from "wagmi";
@@ -48,34 +54,34 @@ export default function UpdateEngaged() {
 
   console.log(isSuccess);
   return (
-    <Card>
+    <Card className="flex-1">
       <CardHeader>
         <CardTitle>Update Spouse's Address</CardTitle>
       </CardHeader>
       <CardContent>
+        <Input
+          type="text"
+          placeholder="Spouse's wallet address"
+          onChange={(e) => {
+            setSpouseAddress(e.target.value.trim());
+            setFormError("");
+          }}
+          value={spouseAddress}
+        />
+      </CardContent>
+      <CardFooter>
         <div className="flex flex-col gap-4">
-          <div className="flex w-full max-w-xl items-start gap-4 flex-col md:flex-row md:items-center">
-            <Input
-              type="text"
-              placeholder="Spouse's wallet address"
-              onChange={(e) => {
-                setSpouseAddress(e.target.value.trim());
-                setFormError("");
-              }}
-              value={spouseAddress}
-            />
-            <Button
-              disabled={!write || !!formError || isLoading}
-              onClick={handleSubmit}
-            >
-              Update
-              {isLoading ? (
-                <PenLine className="ml-2 h-4 w-4 animate-spin" />
-              ) : (
-                <PenLine className="ml-2 h-4 w-4" />
-              )}
-            </Button>
-          </div>
+          <Button
+            disabled={!write || !!formError || isLoading}
+            onClick={handleSubmit}
+          >
+            Update
+            {isLoading ? (
+              <PenLine className="ml-2 h-4 w-4 animate-spin" />
+            ) : (
+              <PenLine className="ml-2 h-4 w-4" />
+            )}
+          </Button>
           {isSuccess && (
             <div className="text-sm text-green-700 italic">
               Congratulations! You are now engaged!
@@ -92,7 +98,7 @@ export default function UpdateEngaged() {
             {formError}
           </div>
         </div>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }

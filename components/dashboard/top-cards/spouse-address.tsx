@@ -1,14 +1,14 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Copy, User } from "lucide-react";
 import { truncateAddress } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { BLOCKCHAIN_CONSTANTS } from "@/lib/constants";
 import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
 import { useContractRead, useWalletClient } from "wagmi";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../../ui/skeleton";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 
