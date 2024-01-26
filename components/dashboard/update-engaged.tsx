@@ -1,20 +1,20 @@
 "use client";
+import { LinkIcon, PenLine } from "lucide-react";
 import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
-import { Gem, LinkIcon } from "lucide-react";
-import { isAddress } from "viem";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 import { useContractWrite, useWaitForTransaction } from "wagmi";
 import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
 import { BLOCKCHAIN_CONSTANTS } from "@/lib/constants";
-import { useState } from "react";
+import { isAddress } from "viem";
+import { useRouter } from "next/navigation";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
-import { useDebounce } from "use-debounce";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { useRouter } from "next/navigation";
 
-export default function EngagedForm() {
+export default function UpdateEngaged() {
   const router = useRouter();
   const [formError, setFormError] = useState("");
   const [spouseAddress, setSpouseAddress] = useState("");
@@ -23,7 +23,7 @@ export default function EngagedForm() {
   const { data, isLoading, isSuccess, isError, write } = useContractWrite({
     abi: abi,
     address: VowedOnChainAddress as `0x${string}`,
-    functionName: "getEngaged",
+    functionName: "updateSpouseAddress",
     args: [
       isAddress(debouncedSpouseAddress)
         ? debouncedSpouseAddress
@@ -46,10 +46,11 @@ export default function EngagedForm() {
     write?.();
   };
 
+  console.log(isSuccess);
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Get Engaged</CardTitle>
+        <CardTitle>Update Spouse's Address</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-4">
@@ -67,11 +68,11 @@ export default function EngagedForm() {
               disabled={!write || !!formError || isLoading}
               onClick={handleSubmit}
             >
-              Let's Engaged{" "}
+              Update
               {isLoading ? (
-                <Gem className="ml-2 h-4 w-4 animate-spin" />
+                <PenLine className="ml-2 h-4 w-4 animate-spin" />
               ) : (
-                <Gem className="ml-2 h-4 w-4" />
+                <PenLine className="ml-2 h-4 w-4" />
               )}
             </Button>
           </div>

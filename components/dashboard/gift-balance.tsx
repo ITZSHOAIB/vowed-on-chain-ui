@@ -5,6 +5,7 @@ import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
 import { useContractRead, useWalletClient } from "wagmi";
 import { BLOCKCHAIN_CONSTANTS } from "@/lib/constants";
+import { Skeleton } from "../ui/skeleton";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 
@@ -28,11 +29,11 @@ export default function GiftBalance() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.LOADING && (
-            <span>Loading...</span>
+          {(!walletClient || !status) && <Skeleton className="w-full h-6" />}
+          {walletClient && status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && (
+            <span>Error!</span>
           )}
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && <span>Error</span>}
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
+          {walletClient && status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
             <span>{data.toString() / 10 ** 18}</span>
           )}
         </CardContent>

@@ -1,4 +1,4 @@
-import Engaged from "@/components/dashboard/engaged";
+import MarriageAction from "@/components/dashboard/marriage-action";
 import GiftBalance from "@/components/dashboard/gift-balance";
 import MartialStatus from "@/components/dashboard/marital-status";
 import SpouseAddress from "@/components/dashboard/spouse-address";
@@ -11,7 +11,7 @@ export default function Dashboard() {
         <GiftBalance />
         <SpouseAddress />
       </div>
-      <Engaged />
+      <MarriageAction />
     </section>
   );
 }

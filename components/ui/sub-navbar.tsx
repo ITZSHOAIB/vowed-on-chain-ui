@@ -38,7 +38,7 @@ export function SubNavbar() {
                   key={link.name}
                   href={link.href}
                   className={clsx(
-                    "flex   grow items-center justify-center gap-1 rounded-md py-2 px-3 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                    "flex grow items-center justify-center gap-1 rounded-md py-2 px-3 hover:bg-background md:flex-none md:justify-start md:p-2 md:px-3",
                     {
                       "bg-background": pathname === link.href,
                     }

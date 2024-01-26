@@ -5,6 +5,7 @@ import { Heart } from "lucide-react";
 import artifact from "@/artifacts/VowedOnChain.json";
 import contractAddress from "@/artifacts/contract-address.json";
 import { useContractRead, useWalletClient } from "wagmi";
+import { Skeleton } from "../ui/skeleton";
 const { abi } = artifact;
 const { VowedOnChainAddress } = contractAddress;
 
@@ -28,11 +29,11 @@ export default function MartialStatus() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.LOADING && (
-            <span>Loading...</span>
+          {(!walletClient || !status) && <Skeleton className="w-full h-6" />}
+          {walletClient && status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && (
+            <span>Error!</span>
           )}
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.ERROR && <span>Error</span>}
-          {status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
+          {walletClient && status === BLOCKCHAIN_CONSTANTS.STATUS.SUCCESS && (
             <>
               {data === MarriageStatus.Single && <span>Single</span>}
               {data === MarriageStatus.Engaged && <span>Engaged</span>}
