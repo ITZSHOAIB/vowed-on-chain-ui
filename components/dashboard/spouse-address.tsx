@@ -24,7 +24,7 @@ export default function SpouseAddress() {
 
   return (
     <>
-      <Card className="w-full">
+      <Card className="w-full bg-yellow-500 bg-opacity-10 border-2 border-black-500 border-opacity-30">
         <CardHeader>
           <CardTitle className="text-xl text-nowrap flex items-center gap-2">
             Spouse
